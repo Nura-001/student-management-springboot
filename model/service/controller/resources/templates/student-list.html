@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Management</title>
+</head>
+<body>
+
+<h2>Add Student</h2>
+<form action="/students" method="post">
+    Name: <input type="text" name="fullName" required>
+    Department: <input type="text" name="department" required>
+    <button type="submit">Add</button>
+</form>
+
+<hr>
+
+<h2>Student List</h2>
+<table border="1">
+<tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Department</th>
+    <th>Action</th>
+</tr>
+
+<tr th:each="s : ${students}">
+    <td th:text="${s.id}"></td>
+    <td th:text="${s.fullName}"></td>
+    <td th:text="${s.department}"></td>
+    <td>
+        <a th:href="@{/students/edit/{id}(id=${s.id})}">Edit</a> |
+        <a th:href="@{/students/delete/{id}(id=${s.id})}">Delete</a>
+    </td>
+</tr>
+</table>
+
+</body>
+</html>
